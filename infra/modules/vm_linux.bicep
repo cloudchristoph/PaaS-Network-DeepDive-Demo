@@ -56,8 +56,8 @@ resource resVm 'Microsoft.Compute/virtualMachines@2023-07-01' = {
       }
       imageReference: {
         publisher: 'Canonical'
-        offer: '0001-com-ubuntu-server-focal'
-        sku: '20_04-lts-gen2'
+        offer: 'ubuntu-24_04-lts'
+        sku: 'server'
         version: 'latest'
       }
     }
@@ -90,9 +90,11 @@ resource resNic 'Microsoft.Network/networkInterfaces@2023-05-01' = {
           subnet: {
             id: varSubnetId
           }
-          publicIPAddress: parPublicIpEnabled ? {
-            id: resPublicIp.id 
-          } : {}
+          publicIPAddress: parPublicIpEnabled
+            ? {
+                id: resPublicIp.id
+              }
+            : {}
         }
       }
     ]
@@ -107,8 +109,8 @@ resource resPublicIp 'Microsoft.Network/publicIPAddresses@2023-05-01' = if (parP
     publicIPAllocationMethod: 'Dynamic'
   }
   sku: {
-     name: 'Standard'
-      tier: 'Regional'
+    name: 'Standard'
+    tier: 'Regional'
   }
 }
 

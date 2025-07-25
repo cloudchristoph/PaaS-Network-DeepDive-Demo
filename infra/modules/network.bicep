@@ -12,6 +12,7 @@ param parAzureFirewallIp string = ''
 
 param parIsHubNetwork bool = false
 param parDeployVirtualNetworkGateway bool = false
+param parDeployBastionHost bool = false
 
 param parLocalVpnGatewayIp string = ''
 param parLocalVpnAddressPrefix string = ''
@@ -191,7 +192,7 @@ module modAzureFirewall 'azure_firewall.bicep' = if (parIsHubNetwork) {
   }
 }
 
-module modAzureBastion 'azure_bastion.bicep' = if (parIsHubNetwork) {
+module modAzureBastion 'azure_bastion.bicep' = if (parIsHubNetwork && parDeployBastionHost) {
   name: 'modAzureBastion'
   params: {
     parName: '${parVnetBaseName}-bastion'

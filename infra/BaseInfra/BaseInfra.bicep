@@ -6,7 +6,8 @@ param parVnetAddressPrefix string
 param parResourceBaseName string
 param parResourceGroupPrefix string = 'rg-${parResourceBaseName}'
 
-param parDeployVirtualNetworkGateway bool = true
+param parDeployVirtualNetworkGateway bool
+param parDeployBastionHost bool
 param parLocalVpnGatewayIp string
 param parLocalVpnAddressPrefix string
 
@@ -61,6 +62,7 @@ module modNetworkHub '../modules/network.bicep' = {
     parVnetAddressPrefix: cidrSubnet(parVnetAddressPrefix, 24, 0)
     parIsHubNetwork: true
     parDeployVirtualNetworkGateway: parDeployVirtualNetworkGateway
+    parDeployBastionHost: parDeployBastionHost
     parLocalVpnAddressPrefix: parLocalVpnAddressPrefix
     parLocalVpnGatewayIp: parLocalVpnGatewayIp
     parLawId: modBaseComponentes.outputs.outLawId

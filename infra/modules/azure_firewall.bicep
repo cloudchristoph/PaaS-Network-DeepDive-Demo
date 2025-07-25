@@ -125,6 +125,7 @@ resource resAzureFirewallPolicy 'Microsoft.Network/firewallPolicies@2024-05-01' 
               name: 'AllowManagement'
               sourceAddresses: [
                 '10.1.0.0/23'
+                '192.168.0.0/16'
               ]
               destinationAddresses: [
                 '*'

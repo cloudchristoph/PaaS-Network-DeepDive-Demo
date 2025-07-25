@@ -76,7 +76,7 @@ module modNetworkSpokePublic '../modules/network.bicep' = {
   params: {
     parLocation: parLocation
     parTags: parTags
-    parVnetBaseName: 'public'
+    parVnetBaseName: 'app1'
     parVnetAddressPrefix: cidrSubnet(parVnetAddressPrefix, 24, 1)
     parAzureFirewallIp: modNetworkHub.outputs.outAzureFirewallPrivateIp
   }
@@ -88,7 +88,7 @@ module modNetworkSpokeServiceEndpoints '../modules/network.bicep' = {
   params: {
     parLocation: parLocation
     parTags: parTags
-    parVnetBaseName: 'serviceendpoint'
+    parVnetBaseName: 'app2'
     parVnetAddressPrefix: cidrSubnet(parVnetAddressPrefix, 24, 2)
     parAzureFirewallIp: modNetworkHub.outputs.outAzureFirewallPrivateIp
     parEnableServiceEndpoints: true
@@ -101,7 +101,7 @@ module modNetworkSpokePrivateEndpoints '../modules/network.bicep' = {
   params: {
     parLocation: parLocation
     parTags: parTags
-    parVnetBaseName: 'privatelink'
+    parVnetBaseName: 'app3'
     parVnetAddressPrefix: cidrSubnet(parVnetAddressPrefix, 24, 3)
     parAzureFirewallIp: modNetworkHub.outputs.outAzureFirewallPrivateIp
   }
@@ -173,7 +173,7 @@ module modEnvironmentPublic '../environments/public-spoke.bicep' = {
   scope: resRgDemoPublic
   name: 'modEnvironmentPublic'
   params: {
-    parResourceBaseName: 'public'
+    parResourceBaseName: 'app1-pu'
     parLocation: parLocation
     parAdminUsername: parAdminUsername
     parAdminPassword: parAdminPassword
@@ -189,7 +189,7 @@ module modEnvironmentServiceEndpoints '../environments/serviceendpoint-spoke.bic
   scope: resRgDemoServiceEndpoints
   name: 'modEnvironmentServiceEndpoints'
   params: {
-    parResourceBaseName: 'serviceendpoints'
+    parResourceBaseName: 'app2-se'
     parLocation: parLocation
     parAdminUsername: parAdminUsername
     parAdminPassword: parAdminPassword
@@ -205,7 +205,7 @@ module modEnvironmentPrivateEndpoints '../environments/privateendpoint-spoke.bic
   scope: resRgDemoPrivateEndpoints
   name: 'modEnvironmentPrivateEndpoints'
   params: {
-    parResourceBaseName: 'privatelink'
+    parResourceBaseName: 'app3-pe'
     parLocation: parLocation
     parAdminUsername: parAdminUsername
     parAdminPassword: parAdminPassword

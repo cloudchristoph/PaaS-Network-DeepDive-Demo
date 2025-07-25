@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains the Demo Environemnt code of the Deep Dive into Azure Service Endpoints and Private Link session for the Festive Tech Calendar 2023.
+This repository contains the Demo Environemnt code of the Deep Dive into Azure Service Endpoints and Private Link session.
 
 ![Demo Environment](./DemoEnvironment.png)
 
@@ -21,38 +21,40 @@ This repository contains the Demo Environemnt code of the Deep Dive into Azure S
 1. Clone or download this repository
 2. Create a parameters file based on the example file under `/BaseInfra/BaseInfra.example.bicepparams`
 3. _Choose:_
+
    1. Deploy as Deployment Stack (Azure PowerShell):
 
-        ```powershell
-        New-AzSubscriptionDeploymentStack `
-            -Name "CloudFamily-Demo" `
-            -Location "westeurope" `
-            -TemplateFile "./BaseInfra/BaseInfra.bicep" `
-            -TemplateParameterFile "./BaseInfra/BaseInfra.bicepparam" `
-            -DenySettingsMode "None" `
-            -Verbose
-        ```
+      ```powershell
+      New-AzSubscriptionDeploymentStack `
+          -Name "CC-Network-Deepdive-Demo" `
+          -Location "westeurope" `
+          -TemplateFile "./BaseInfra/BaseInfra.bicep" `
+          -TemplateParameterFile "./BaseInfra/BaseInfra.bicepparam" `
+          -DenySettingsMode "None" `
+          -Verbose
+      ```
 
    2. Deploy as normal Bicep templates (Azure PowerShell)):
 
-        ```powershell
-            New-AzDeployment `
-                -Location 'westeurope' `
-                -TemplateFile './BaseInfra/BaseInfra.bicep' `
-                -TemplateParameterFile './BaseInfra/BaseInfra.bicepparam'`
-                -Verbose
-        ```
+      ```powershell
+          New-AzDeployment `
+              -Location 'westeurope' `
+              -TemplateFile './BaseInfra/BaseInfra.bicep' `
+              -TemplateParameterFile './BaseInfra/BaseInfra.bicepparam'`
+              -Verbose
+      ```
 
 4. Play around with the demo environment
 5. Destroy:
+
    1. If you have deployed this as Deployment Stack:
 
-        ```powershell
-        Remove-AzSubscriptionDeploymentStack `
-            -Name "CloudFamily-Demo" `
-            -DeleteAll `
-            -Verbose
-        ```
+      ```powershell
+      Remove-AzSubscriptionDeploymentStack `
+          -Name "CC-Network-Deepdive-Demo" `
+          -DeleteAll `
+          -Verbose
+      ```
 
    2. If you have deployed as normal Bicep templates, than delete the resource groups created by the deployment manually.
 
